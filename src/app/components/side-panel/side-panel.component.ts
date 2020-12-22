@@ -1,10 +1,11 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { ToggleService } from 'src/app/services/toggle.service';
 
 @Component({
   selector: 'app-side-panel',
   templateUrl: './side-panel.component.html',
-  styleUrls: ['./side-panel.component.css']
+  styleUrls: ['./side-panel.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidePanelComponent implements OnInit {
 

@@ -1,6 +1,7 @@
-import { Component, Input, OnInit, DoCheck, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, DoCheck, ChangeDetectionStrategy } from '@angular/core';
 import { ToggleService } from 'src/app/services/toggle.service';
 import * as moment from 'moment'
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list-items',
@@ -17,6 +18,8 @@ export class ListItemsComponent implements OnInit, DoCheck {
 
   searchText: string;
   toggleView: boolean;
+  sub1: Subscription;
+  sub2: Subscription;
   
   constructor(private toggleSvc: ToggleService) { 
   }
@@ -38,7 +41,7 @@ export class ListItemsComponent implements OnInit, DoCheck {
 
 
   sortItems() {
-    this.toggleSvc.isAscDescSortItems.subscribe((state) => {
+    this.sub1 = this.toggleSvc.isAscDescSortItems.subscribe((state) => {
       this.list = this.list
         .sort((ItemPos2: any, ItemPos1: any) => {
           let pos1: any = moment(ItemPos1.Year, "YYYY/MM/DD");
@@ -65,11 +68,16 @@ export class ListItemsComponent implements OnInit, DoCheck {
 
 
   ngOnInit() {
-    this.toggleSvc.isToggleView.subscribe((state) => {
+    this.sub2 = this.toggleSvc.isToggleView.subscribe((state) => {
       this.toggleView = state;
     });
     this.sortItems();
     this.checkField();
+  }
+
+  ngOnDestroy() {
+    this.sub1.unsubscribe();
+    this.sub2.unsubscribe();
   }
 
 }

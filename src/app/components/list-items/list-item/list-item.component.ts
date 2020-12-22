@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list-item',
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.css']
 })
-export class ListItemComponent implements OnInit {
+export class ListItemComponent implements OnInit, OnDestroy {
 
   data;
+  subs: Subscription;
   
   constructor(private apiService: ApiService,
               private router: Router,
@@ -18,7 +20,7 @@ export class ListItemComponent implements OnInit {
 
 
   getItemById(): void {
-    this.route.params.subscribe(itemId => {
+    this.subs = this.route.params.subscribe(itemId => {
       const id = itemId.id;
       this.apiService.getItemById(id)
         .subscribe(
@@ -37,6 +39,11 @@ export class ListItemComponent implements OnInit {
 
   ngOnInit() {
     this.getItemById();
+  }
+
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 
 }

@@ -16,9 +16,12 @@ export class AppComponent implements OnInit, OnDestroy {
   isLoading = true;
   sub: Subscription;
   showList = false;
+  sub1: Subscription;
+  sub2: Subscription;
+
   
   constructor(private apiService: ApiService, private router: Router, private toggleSvc: ToggleService) {
-    this.apiService.getData()
+    this.sub1 = this.apiService.getData()
     .subscribe(data =>{
       this.products = data;
       this.isLoading = false;
@@ -27,7 +30,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-     this.sub = this.router.events.subscribe(val => {
+     this.sub2 = this.router.events.subscribe(val => {
       if (val instanceof RoutesRecognized) {
         if ( val.url === '' || val.url !== '/' ) {
           this.showList = true;
@@ -63,7 +66,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.sub1.unsubscribe();
+    this.sub2.unsubscribe();
   }
 
 

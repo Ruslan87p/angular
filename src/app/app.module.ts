@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchPipe } from './components/pipes/search.pipe';
 import { ItemsModule } from './components/list-items/items.module';
 import { SharedModule } from './shared/shared/shared.module';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { SharedModule } from './shared/shared/shared.module';
     HeaderComponent,
     ListItemsComponent,
     SidePanelComponent,
-    SearchPipe
+    SearchPipe,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,10 @@
 .img-wrapp {
-  height: 300px;
+  height: 350px;
   overflow-y: hidden;
 }
 .maxWidth {
   width: 100%;
-  max-width: 300px;
+  max-width: 350px;
 }
 .imgSize {
   max-width: 100px;
@@ -13,4 +13,8 @@
   text-decoration: underline;
   cursor: pointer;
   color: #075eff;
+}
+.height {
+  max-height: 150px;
+  height: 100%;
 }

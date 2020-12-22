@@ -1,6 +1,9 @@
 
 
 <div class="container">
+
+  <app-loading *ngIf="isLoading"></app-loading>
+
   <div class="row">
     <div class="col-md-12">
       <app-header (search)="searchWord($event)" (refresh)="refresh($event)" *ngIf="!isLoading && !showList"></app-header>
