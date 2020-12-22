@@ -55,7 +55,9 @@ export class HeaderComponent implements AfterViewChecked, OnInit {
 
   
   ngAfterViewChecked() {
-    this.search.emit(this.input.nativeElement.value);
+    if(this.input.nativeElement) {
+      this.search.emit(this.input.nativeElement.value);
+    }
   }
 
 
