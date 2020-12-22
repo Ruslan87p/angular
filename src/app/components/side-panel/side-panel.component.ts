@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
 import { ToggleService } from 'src/app/services/toggle.service';
 
 @Component({
@@ -17,12 +18,11 @@ export class SidePanelComponent implements OnInit {
   all;
   toggleView: boolean;
 
-  constructor(private toggleSvc: ToggleService) { 
-
-  }
+  constructor(private toggleSvc: ToggleService, private apiSvc: ApiService) {}
 
   showFilteredByType(items) {
     this.filteredList.emit(items);
+    this.apiSvc.sortData(items);
   }
 
   ngOnInit() {

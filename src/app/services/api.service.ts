@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { ToggleService } from './toggle.service';
+import * as moment from 'moment'
 
 
 @Injectable({
@@ -11,7 +13,7 @@ export class ApiService {
 
   data = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toggleSvc: ToggleService) { }
 
   getData(): Observable<any> {
     return this.http.get<any[]>(`http://localhost:3000/results`).pipe(
@@ -33,6 +35,29 @@ export class ApiService {
     );
   }
 
+
+  sortData(items) {
+    return this.toggleSvc.isAscDescSortItems.subscribe((state) => {
+      items
+        .sort((ItemPos2: any, ItemPos1: any) => {
+          let pos1: any = moment(ItemPos1.Year, "YYYY/MM/DD");
+          pos1.format('YYYY/MM/DD');
+          let pos2: any = moment(ItemPos2.Year, "YYYY/MM/DD");
+          pos2.format('YYYY/MM/DD');
+            if (state) {
+              return pos1 - pos2;
+          } else {
+              return pos2 - pos1;
+          }
+      })
+      .map( item => {
+        let date = moment(item.Year, "YYYY/MM/DD").format('YYYY/MM/DD');
+        item.Year = date;
+        return item;
+      })
+    }); 
+  }
+  
 
   errorHandler(error) {
     let errorMessage = '';

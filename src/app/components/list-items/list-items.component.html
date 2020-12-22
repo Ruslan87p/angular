@@ -1,7 +1,7 @@
 
 <div class="d-flex flex-row flex-wrap justify-content-between" *ngIf="!showList && !toggleView">
 
-    <div class="card maxWidth mt-3 p-2" *ngFor="let item of list | searchField: searchText; let i = index"> 
+    <div class="card bg-light maxWidth mt-3 p-2" *ngFor="let item of list | searchField: searchText; let i = index"> 
         <div class="img-wrapp">
             <a 
             routerLink="/{{item.imdbID}}"
@@ -21,6 +21,7 @@
         </div>
 
     </div>
+
 
     <h1 *ngIf="(list | searchField: searchText).length === 0">No matches found</h1>  
 

@@ -1,4 +1,4 @@
-import { Component, Output,EventEmitter, ViewChild, AfterViewChecked, AfterViewInit } from '@angular/core';
+import { Component, Output,EventEmitter, ViewChild, AfterViewChecked, AfterViewInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { ToggleService } from 'src/app/services/toggle.service';
 
@@ -17,16 +17,18 @@ export class HeaderComponent implements AfterViewChecked, AfterViewInit {
 
   sortFlag = false;
   
-  constructor(private apiSvs: ApiService, private toggleSvc: ToggleService) { }
+  constructor(private apiSvc: ApiService, private toggleSvc: ToggleService) { }
+
 
 
 
 
   
   getAllItems() {
-    return this.apiSvs.getData()
+    return this.apiSvc.getData()
     .subscribe( data => {
       this.refresh.emit(data);
+      this.apiSvc.sortData(data);
     })
   }
 
