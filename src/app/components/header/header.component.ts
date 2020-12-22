@@ -1,4 +1,4 @@
-import { Component, Output,EventEmitter, ViewChild, AfterViewChecked, OnInit } from '@angular/core';
+import { Component, Output,EventEmitter, ViewChild, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { ToggleService } from 'src/app/services/toggle.service';
 
@@ -7,7 +7,7 @@ import { ToggleService } from 'src/app/services/toggle.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements AfterViewChecked, OnInit {
+export class HeaderComponent implements AfterViewChecked, AfterViewInit {
 
   searchword: string = ''; 
   @Output() search = new EventEmitter<String>();
@@ -45,7 +45,7 @@ export class HeaderComponent implements AfterViewChecked, OnInit {
   }
 
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.toggleSvc.clickedItemTitle.subscribe((title) => {
       if (title) {
         this.input.nativeElement.value = title;
