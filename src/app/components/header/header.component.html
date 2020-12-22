@@ -1,0 +1,14 @@
+<div class="d-flex flex-row mt-3">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">Search</span>
+        </div>
+    <input #input class="form-control" type="text" [(ngModel)]="searchword">
+    </div>
+
+    <div class="btn-group w-50 d-flex flex-row justify-content-around" role="group" aria-label="group-buttons">
+        <button type="button" class="btn btn-secondary rounded" (click)="isOnClear()">Clear</button>
+        <button type="button" class="btn btn-secondary rounded" (click)="isOnRefresh()">Refresh</button>
+        <button type="button" class="btn btn-secondary rounded" (click)="isOnSort()">Sort</button>
+    </div>
+</div>

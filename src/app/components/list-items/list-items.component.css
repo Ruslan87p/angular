@@ -1,0 +1,16 @@
+.img-wrapp {
+  height: 300px;
+  overflow-y: hidden;
+}
+.maxWidth {
+  width: 100%;
+  max-width: 300px;
+}
+.imgSize {
+  max-width: 100px;
+}
+.title {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #075eff;
+}

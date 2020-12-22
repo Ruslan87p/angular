@@ -1,0 +1,31 @@
+
+<div class="container mb-3" *ngIf="data">
+    <div class="row">
+      <div class="col-lg-12">
+  
+        <div class="card border-radius-table">
+
+          <div class="card-body article-content border-0">
+            <div class="d-flex flex-row">
+              
+              <img style="height: 400px" [src]="data[0]['Poster']" alt="image">
+              <div>
+                <h4 class="p-2 m-2" >
+                  {{data[0]['Title']}}
+                 </h4>
+                <p class="p-2 m-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima voluptates consequuntur officia natus quas, nobis, minus nesciunt tempora ex repellat dignissimos temporibus. Libero sed, rerum assumenda magni magnam blanditiis doloribus.</p>
+
+                <h5 class="p-2 m-2"><b>{{data[0]['Type']}}</b> </h5>
+
+              </div>
+            </div>
+
+            <button class="mt-2 btn btn-primary" (click)="back()">Back</button>
+          </div>
+
+        </div>
+  
+      </div>
+  
+    </div>
+  </div>

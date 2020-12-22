@@ -1,0 +1,53 @@
+
+<div class="d-flex flex-row flex-wrap justify-content-between" *ngIf="!showList && !toggleView">
+
+    <div class="card maxWidth mt-3 p-2" *ngFor="let item of list | searchField: searchText; let i = index"> 
+        <div class="img-wrapp">
+            <a 
+            routerLink="/{{item.imdbID}}"
+            rel="noopener">
+                <img class="card-img-top" [src]="item.Poster" alt="image">
+            </a>  
+        </div>
+        <div class="d-flex flex-row justify-content-around">
+            <h5 class="p-2 title" (click)="isClickedTitle(item.Title)">
+                {{item.Title}}
+            </h5>
+            <p class="p-2"><b>({{item.Type}})</b></p>
+        </div>
+        <div class="card-body d-flex flex-column">
+          <small>IMDB ID - {{item.imdbID}}</small>
+          <small><b>Release date - {{item.Year}}</b></small>
+        </div>
+
+    </div>
+
+    <h1 *ngIf="(list | searchField: searchText).length === 0">No matches found</h1>  
+
+</div>
+
+
+
+
+<div class="list-group"  *ngIf="!showList && toggleView">
+    <span href="#" *ngFor="let item of list | searchField: searchText; let i = index" class="list-group-item list-group-item-action flex-row align-items-start mt-2">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">
+            <h5 class="p-2 title" (click)="isClickedTitle(item.Title)">
+                {{item.Title}}
+            </h5>
+        </h5>
+        <small><p class="p-2"><b>{{item.Type}}</b></p></small>
+      </div>
+        <a 
+        routerLink="/{{item.imdbID}}"
+        rel="noopener">
+            <img class="img-thumbnail imgSize" [src]="item.Poster" alt="image">
+        </a>
+      <small>IMDB ID - {{item.imdbID}}</small>
+      <small>Year - {{item.Year}}</small>
+    </span>
+    
+    <h1 *ngIf="(list | searchField: searchText).length === 0">No matches found</h1>  
+
+  </div>

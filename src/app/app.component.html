@@ -1,0 +1,17 @@
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <app-header (search)="searchWord($event)" (refresh)="refresh($event)" *ngIf="!isLoading && !showList"></app-header>
+    </div>
+    <div class="col-md-4 sticky">
+      <app-side-panel [list]="products" (filteredList)="filtered($event)" *ngIf="!isLoading && !showList"></app-side-panel>
+    </div>
+    <div class="col-md-8">
+      <app-list-items *ngIf="!isLoading" [list]="products" [search]="search" [showList]="showList" ></app-list-items>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

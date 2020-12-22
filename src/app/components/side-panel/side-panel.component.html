@@ -1,0 +1,12 @@
+<div class="d-flex flex-column follow">
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-action color" (click)="showFilteredByType(this.all)"> All - {{this.all.length}} </li>
+    <li class="list-group-item list-group-item-action color" (click)="showFilteredByType(this.movie)"> Movies - {{this.movie.length}} </li>
+    <li class="list-group-item list-group-item-action color" (click)="showFilteredByType(this.series)"> Series - {{this.series.length}} </li>
+    <li class="list-group-item list-group-item-action color" (click)="showFilteredByType(this.game)"> Games - {{this.game.length}} </li>
+  </ul>
+  <div class="">
+    <button *ngIf="!toggleView" class="btn btn-outline-primary mt-2" (click)="cnahgeView()">Change view to List</button>
+    <button *ngIf="toggleView" class="btn btn-outline-primary mt-2" (click)="cnahgeView()">Change view to Grid</button>
+  </div>
+</div>
